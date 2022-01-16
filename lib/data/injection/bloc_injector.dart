@@ -40,10 +40,7 @@ class BlocInjector {
   }
 
   static _setupLoginBloc() {
-    _getIt.registerSingletonWithDependencies<LoginBloc>(
-      () => LoginBloc(),
-      dependsOn: [],
-    );
+    _getIt.registerSingleton<LoginBloc>(LoginBloc());
   }
 
   static _setupAddBloc() {

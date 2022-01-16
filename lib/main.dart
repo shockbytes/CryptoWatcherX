@@ -2,6 +2,7 @@ import 'package:cryptowatcherx/bloc/login/login_bloc.dart';
 import 'package:cryptowatcherx/ui/home/home_page.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:cryptowatcherx/util/crypto_text_style.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +13,7 @@ import 'ui/login/login_page.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupSystemStyle();
+  await Firebase.initializeApp();
   await DependencyInjector.setupDependencyInjection();
   runApp(MyApp());
 }
@@ -25,7 +27,7 @@ void setupSystemStyle() {
 }
 
 class MyApp extends StatelessWidget {
-  final LoginBloc _bloc = LoginBloc();
+  final LoginBloc _bloc = DependencyInjector.get<LoginBloc>();
 
   MyApp({Key? key}) : super(key: key);
 
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
             if (state != null && state == LoginState.loggedIn) {
               return HomePage();
             } else {
-              return const LoginPage();
+              return LoginPage();
             }
           }),
     );

@@ -7,6 +7,7 @@ import 'package:cryptowatcherx/data/investment/model/investment.dart';
 import 'package:cryptowatcherx/ui/core/platform_components.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:cryptowatcherx/util/crypto_text_style.dart';
+import 'package:cryptowatcherx/util/ui_utils.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -183,21 +184,10 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
 
   _validateAndProceed(BuildContext context) async {
     if (!_validate()) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Missing data!'),
-          content: Text('Please add all the data to create a new investment'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text(
-                'Okay',
-                style: TextStyle(color: CryptoColors.accent),
-              ),
-            ),
-          ],
-        ),
+      await UiUtils.showUserDialog(
+        context,
+        title: 'Missing data!',
+        content: 'Please add all the data to create a new investment',
       );
       return;
     }
