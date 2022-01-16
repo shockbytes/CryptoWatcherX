@@ -1,4 +1,4 @@
-package com.example.cryptowatcherx
+package at.shockbytes.cryptowatcherx
 
 import io.flutter.embedding.android.FlutterActivity
 
