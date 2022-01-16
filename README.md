@@ -7,13 +7,17 @@ Cross platform implementation of CryptoWatcher Android App
 - [x] App Icon
 - [x] Add Date of purchase
 - [x] Handle add new errors
-- [ ] Setup Firebase
+- [x] Setup Firebase
 - [x] Load icons
+- [x] Login for Firebase
+- [x] Persist on Firebase
+- [x] Sort by date
 - [ ] Splash Screen
-- [ ] Login for Firebase
-- [ ] Persist on Firebase
+- [ ] Proper Icons!
+
 - [ ] Load prices via API
 - [ ] Convert Fiat currencies
-- [ ] First class Web Support
+  
+- [ ] First class Web Support (incl. Hosting)
 - [ ] API for overall Finance app
 

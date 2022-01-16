@@ -11,7 +11,7 @@ class Money {
 
   @override
   String toString() {
-    return '$amount ${currency.code}';
+    return '${amount.toStringAsFixed(2)} ${currency.code}';
   }
 }
 

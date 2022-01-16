@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/investment/investment_mapper.dart';
 
@@ -17,36 +15,51 @@ class FirebaseInvestmentRepository implements InvestmentRepository {
   final InvestmentMapper mapper = InvestmentMapper();
 
   @override
-  Future<Money> getInvestedMoney() async {
-    DatabaseEvent event = await _buildBaseReference().once();
+  Stream<Money> getInvestedMoney() {
+    return getInvestments().map(
+      (investments) {
+        if (investments.isEmpty) {
+          return Money.empty();
+        }
 
-    // TODO
-    print('Get invested money');
-    print(event.snapshot);
+        FiatCurrency currency = investments[0].buyingPrice.currency;
+        double sum = investments.fold(
+          0,
+          (sum, investment) => sum + investment.buyingPrice.amount,
+        );
 
-    return Money.empty();
+        return Money(
+          amount: sum,
+          currency: currency,
+        );
+      },
+    );
   }
 
   @override
   Stream<List<Investment>> getInvestments() {
-    return _buildBaseReference().onValue.asyncMap(
-      (event) async {
-        var data = event.snapshot.value as Map<Object?, Object?>;
-
-        List<Investment> investments = [];
-        data.forEach(
-          (key, value) {
-            var investment = mapper.mapFrom(value as Map<Object?, Object?>);
-
-            if (investment != null) {
-              investments.add(investment);
-            }
-          },
+    return _buildBaseReference().onValue.map(
+          (event) => _extractDataFromSnapshot(event.snapshot),
         );
+  }
 
-        return investments;
+  List<Investment> _extractDataFromSnapshot(DataSnapshot dataSnapshot) {
+    var data = dataSnapshot.value as Map<Object?, Object?>;
+
+    List<Investment> investments = [];
+    data.forEach(
+      (key, value) {
+        var investment = mapper.mapFrom(value as Map<Object?, Object?>);
+
+        if (investment != null) {
+          investments.add(investment);
+        }
       },
     );
+
+    investments.sort((e1, e2) => e1.buyingTime.compareTo(e2.buyingTime));
+
+    return investments;
   }
 
   @override

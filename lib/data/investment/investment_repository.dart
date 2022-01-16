@@ -7,7 +7,7 @@ abstract class InvestmentRepository {
 
   Stream<List<Investment>> getInvestments();
 
-  Future<Money> getInvestedMoney();
+  Stream<Money> getInvestedMoney();
 
   Future placeInvestment(Investment investment);
 }

@@ -45,14 +45,14 @@ class CryptoTextStyle {
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w700,
         color: CryptoColors.text,
-        fontSize: 18,
+        fontSize: 14,
       );
 
   static TextStyle get investmentCardSecondary => const TextStyle(
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w400,
         color: CryptoColors.text,
-        fontSize: 16,
+        fontSize: 12,
       );
 
   static TextStyle get investmentCardTertiary => const TextStyle(

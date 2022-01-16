@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cryptowatcherx/data/core/crypto_currency.dart';
 import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_service.dart';
 import 'package:cryptowatcherx/data/injection/dependency_injector.dart';
@@ -75,11 +74,6 @@ class DevelopedInvestmentCard extends StatelessWidget {
                   style:
                       CryptoTextStyle.balanceDevelopment(investment.isPositive),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  _formatInvestmentDate(investment.investment.buyingTime),
-                  style: CryptoTextStyle.investmentCardTertiary,
-                ),
               ],
             ),
             const SizedBox(width: 8)
@@ -87,11 +81,5 @@ class DevelopedInvestmentCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _formatInvestmentDate(DateTime date) {
-    return '${date.day.toString().padLeft(2, '0')}.'
-        '${date.month.toString().padLeft(2, '0')}.'
-        '${date.year}';
   }
 }

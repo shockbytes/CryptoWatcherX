@@ -15,7 +15,7 @@ class BalanceBloc {
   BalanceBloc(this._investmentRepository);
 
   fetch() {
-    _investmentRepository.getInvestedMoney().then((invested) {
+    _investmentRepository.getInvestedMoney().listen((invested) {
       _balanceSubject.add(
         Balance(
           invested: invested,

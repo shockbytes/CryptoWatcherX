@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 import 'investment_repository.dart';
 
+@deprecated
 class InMemoryInvestmentRepository implements InvestmentRepository {
   final List<Investment> _investments = [
     Investment(
@@ -46,9 +47,9 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
   }
 
   @override
-  Future<Money> getInvestedMoney() async {
+  Stream<Money> getInvestedMoney() {
     if (_investments.isEmpty) {
-      return Money.empty();
+      return Future.value(Money.empty()).asStream();
     }
 
     FiatCurrency currency = _investments[0].buyingPrice.currency;
@@ -57,9 +58,11 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
       (sum, investment) => sum + investment.buyingPrice.amount,
     );
 
-    return Money(
-      amount: sum,
-      currency: currency,
-    );
+    return Future.value(
+      Money(
+        amount: sum,
+        currency: currency,
+      ),
+    ).asStream();
   }
 }

@@ -24,9 +24,9 @@ class InvestmentMapper {
       currencyObject['code'] as String,
     );
     DateTime buyingTime = DateTime.parse(value['buyingTime'] as String);
-    double amount = (value['amount'] as int).toDouble();
+    double amount = (value['amount'] as num).toDouble();
     Money buyingPrice = Money(
-      amount: (buyingPriceObject['amount'] as int).toDouble(),
+      amount: (buyingPriceObject['amount'] as num).toDouble(),
       currency: FiatCurrencyExtension.ofCode(
         buyingPriceObject['currency'] as String,
       )!,
