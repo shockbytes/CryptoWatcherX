@@ -1,4 +1,4 @@
-import 'package:cryptowatcherx/data/crypto/image/crypto_coins_crypto_currency_image_path_service.dart';
+import 'package:cryptowatcherx/data/crypto/image/coin_icons_crypto_currency_image_path_service.dart';
 import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -13,7 +13,7 @@ class ServiceInjector {
 
   static _setupImagePathService() {
     _getIt.registerSingleton<CryptoCurrencyImagePathService>(
-      CryptoCoinsCryptoCurrencyImagePathService(),
+      CoinIconsCryptoCurrencyImagePathService(),
     );
   }
 }

@@ -10,7 +10,7 @@ import 'data/injection/dependency_injector.dart';
 import 'ui/login/login_page.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   setupSystemStyle();
   await DependencyInjector.setupDependencyInjection();
   runApp(MyApp());

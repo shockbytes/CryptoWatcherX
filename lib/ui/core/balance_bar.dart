@@ -6,7 +6,6 @@ import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/material.dart';
 
 class BalanceBar extends StatefulWidget implements PreferredSizeWidget {
-
   const BalanceBar({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +16,6 @@ class BalanceBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _BalanceBarState extends State<BalanceBar> {
-
   final BalanceBloc _bloc = DependencyInjector.get<BalanceBloc>();
 
   @override
@@ -41,6 +39,7 @@ class _BalanceBarState extends State<BalanceBar> {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      const SizedBox(height: 8),
                       Text(
                         balance.current.toString(),
                         style: CryptoTextStyle.balanceCurrent,
@@ -54,14 +53,16 @@ class _BalanceBarState extends State<BalanceBar> {
                       Text(
                         '${balance.development.percentage}%',
                         style: CryptoTextStyle.balanceDevelopment(
-                          balance.isPositive
-                        ),
+                            balance.isPositive),
                       ),
                     ],
                   );
                 } else {
                   return Center(
-                    child: Text('Fetching data'),
+                    child: Text(
+                      'Fetching data',
+                      style: CryptoTextStyle.textDefault,
+                    ),
                   );
                 }
               }),

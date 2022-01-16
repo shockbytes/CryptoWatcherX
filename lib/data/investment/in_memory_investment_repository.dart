@@ -17,7 +17,7 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
       currency: CryptoCurrency.eth,
       buyingPrice: Money(12.0, FiatCurrency.eur),
       buyingTime: DateTime.now(),
-      amount: 12,
+      amount: 2,
     ),
   ];
 
