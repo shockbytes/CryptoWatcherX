@@ -19,12 +19,11 @@ class HomePage extends StatelessWidget {
         stream: _bloc.investments,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-
             List<DevelopedInvestment> investments = snapshot.data!;
             return ListView.separated(
               itemCount: investments.length,
               physics: const BouncingScrollPhysics(),
-              separatorBuilder: (context, index) => SizedBox(height: 12),
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 return DevelopedInvestmentCard(investments[index]);
               },
@@ -38,6 +37,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
+        backgroundColor: CryptoColors.accent,
         label: Text('New crypto'),
       ),
     );

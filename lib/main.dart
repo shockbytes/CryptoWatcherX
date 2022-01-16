@@ -1,6 +1,7 @@
 import 'package:cryptowatcherx/bloc/login/login_bloc.dart';
 import 'package:cryptowatcherx/ui/home/home_page.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
+import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       // localizationsDelegates: AppLocalizations.localizationsDelegates,
       // supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        // fontFamily: 'Spartan',
+        fontFamily: CryptoTextStyle.primaryFontFamily,
         primaryColor: CryptoColors.highlight,
         backgroundColor: CryptoColors.background,
         visualDensity: VisualDensity.adaptivePlatformDensity,

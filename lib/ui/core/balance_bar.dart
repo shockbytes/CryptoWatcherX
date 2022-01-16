@@ -30,7 +30,7 @@ class BalanceBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        balance.initial.toString(),
+                        balance.invested.toString(),
                         style: CryptoTextStyle.balanceInitial,
                       ),
                       const Spacer(),

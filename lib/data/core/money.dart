@@ -7,6 +7,8 @@ class Money {
     this.currency,
   );
 
+  Money.empty(): amount = 0, currency = FiatCurrency.eur;
+
   @override
   String toString() {
     return '$amount ${currency.code}';

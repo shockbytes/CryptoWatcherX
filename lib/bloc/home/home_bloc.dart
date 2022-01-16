@@ -1,5 +1,4 @@
 import 'package:cryptowatcherx/data/core/money.dart';
-import 'package:cryptowatcherx/data/core/percentage.dart';
 import 'package:cryptowatcherx/data/investment/in_memory_investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
@@ -16,13 +15,13 @@ class HomeBloc {
       _investmentSubject.stream.map((investments) {
         return investments.map(
           (investment) {
+            // TODO Load real prices here
             return DevelopedInvestment(
               investment,
               Money(
                 14.00,
                 FiatCurrency.eur,
               ),
-              Percentage(12),
             );
           },
         ).toList();
