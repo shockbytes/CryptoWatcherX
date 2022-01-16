@@ -1,5 +1,5 @@
 
-import 'price_source.dart';
+import './price_source.dart';
 
 abstract class PriceProvider {
 

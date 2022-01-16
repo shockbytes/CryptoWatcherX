@@ -1,14 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cryptowatcherx/data/core/crypto_currency.dart';
+import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_service.dart';
+import 'package:cryptowatcherx/data/injection/dependency_injector.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/material.dart';
 
 class DevelopedInvestmentCard extends StatelessWidget {
+  final CryptoCurrencyImagePathService _imagePathService =
+      DependencyInjector.get<CryptoCurrencyImagePathService>();
+
   final DevelopedInvestment investment;
 
-  const DevelopedInvestmentCard(this.investment, {Key? key}) : super(key: key);
+  DevelopedInvestmentCard(this.investment, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +34,16 @@ class DevelopedInvestmentCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CachedNetworkImage(
-              imageUrl: _buildIconUrl(
-                  investment.investment.currency, 48, CryptoColors.background),
-              height: 48,
+            _imagePathService.buildCryptoCurrencyImage(
+              investment.investment.currency,
+              size: 48
             ),
             const SizedBox(width: 4),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  investment.investment.currency.name,
+                  investment.investment.currency.coinName,
                   style: CryptoTextStyle.investmentCardPrimary,
                 ),
                 const SizedBox(height: 4),
@@ -74,9 +78,5 @@ class DevelopedInvestmentCard extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  String _buildIconUrl(CryptoCurrency currency, int size, Color color) {
-    return 'https://cryptoicons.org/api/color/${currency.code.toLowerCase()}/$size/${color.value.toRadixString(16).substring(2)}';
   }
 }

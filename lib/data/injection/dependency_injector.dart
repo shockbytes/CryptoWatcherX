@@ -1,3 +1,4 @@
+import 'package:cryptowatcherx/data/injection/service_injector.dart';
 import 'package:get_it/get_it.dart';
 
 import 'api_injector.dart';
@@ -16,6 +17,7 @@ class DependencyInjector {
   static Future<void> setupDependencyInjection() async {
 
     ApiInjector.setup();
+    ServiceInjector.setup();
     RepositoryInjector.setup();
     BlocInjector.setup();
 

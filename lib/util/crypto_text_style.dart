@@ -6,6 +6,20 @@ class CryptoTextStyle {
 
   static const primaryFontFamily = 'Spartan';
 
+  static TextStyle get textDefault => const TextStyle(
+        fontFamily: primaryFontFamily,
+        fontWeight: FontWeight.w400,
+        color: CryptoColors.text,
+        fontSize: 16,
+      );
+
+  static TextStyle textDropdown = const TextStyle(
+        fontFamily: primaryFontFamily,
+        fontWeight: FontWeight.w500,
+        color: CryptoColors.text,
+        fontSize: 12,
+      );
+
   static TextStyle get balanceCurrent => const TextStyle(
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w700,
@@ -23,7 +37,7 @@ class CryptoTextStyle {
   static TextStyle balanceDevelopment(bool isPositive) => TextStyle(
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w700,
-        color: isPositive ? Colors.lightGreen : Colors.red,
+        color: isPositive ? CryptoColors.accent: Colors.red,
         fontSize: 16,
       );
 
@@ -47,4 +61,25 @@ class CryptoTextStyle {
         color: CryptoColors.text,
         fontSize: 12,
       );
+
+  static TextStyle dateMonthTextStyle = const TextStyle(
+    fontFamily: primaryFontFamily,
+    color: CryptoColors.text,
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle dateDateTextStyle = const TextStyle(
+    fontFamily: primaryFontFamily,
+    color: CryptoColors.text,
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle dateDayTextStyle = const TextStyle(
+    fontFamily: primaryFontFamily,
+    color: CryptoColors.text,
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+  );
 }

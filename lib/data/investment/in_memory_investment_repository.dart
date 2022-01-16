@@ -1,6 +1,7 @@
 import 'package:cryptowatcherx/data/core/crypto_currency.dart';
 import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/investment/model/investment.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'investment_repository.dart';
 
@@ -20,14 +21,22 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
     ),
   ];
 
+  BehaviorSubject<List<Investment>> _subject = BehaviorSubject();
+
+  InMemoryInvestmentRepository() {
+    _subject.add(_investments);
+  }
+
   @override
-  Future<List<Investment>> getInvestments() async {
-    return _investments;
+  Stream<List<Investment>> getInvestments() {
+    return _subject;
   }
 
   @override
   Future placeInvestment(Investment investment) async {
     _investments.add(investment);
+
+    _subject.add(_investments);
   }
 
   @override

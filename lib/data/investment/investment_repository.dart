@@ -5,7 +5,7 @@ import 'package:cryptowatcherx/data/investment/model/investment.dart';
 
 abstract class InvestmentRepository {
 
-  Future<List<Investment>> getInvestments();
+  Stream<List<Investment>> getInvestments();
 
   Future<Money> getInvestedMoney();
 

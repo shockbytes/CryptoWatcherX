@@ -27,6 +27,6 @@ class HomeBloc {
 
   HomeBloc(this._investmentRepository) {
     _investmentSubject
-        .addStream(_investmentRepository.getInvestments().asStream());
+        .addStream(_investmentRepository.getInvestments());
   }
 }
