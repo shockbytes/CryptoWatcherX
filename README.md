@@ -4,8 +4,8 @@ Cross platform implementation of CryptoWatcher Android App
 
 ## Backlog
 
-- [ ] App Icon
-- [ ] Add Date of purchase
+- [x] App Icon
+- [x] Add Date of purchase
 - [ ] Handle add new errors
 - [ ] Setup Firebase
 - [x] Load icons

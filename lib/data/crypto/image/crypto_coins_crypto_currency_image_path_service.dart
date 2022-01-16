@@ -17,7 +17,6 @@ class CryptoCoinsCryptoCurrencyImagePathService
           'https://cryptoicons.org/api/color/${currency.code.toLowerCase()}/$size/${color.value.toRadixString(16).substring(2)}',
       errorWidget: (context, url, error) => Container(
         width: size.toDouble(),
-        color: Colors.red,
       ),
       placeholder: (context, url) => Container(
         width: size.toDouble(),

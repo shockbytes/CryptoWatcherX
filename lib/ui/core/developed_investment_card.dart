@@ -35,9 +35,8 @@ class DevelopedInvestmentCard extends StatelessWidget {
         child: Row(
           children: [
             _imagePathService.buildCryptoCurrencyImage(
-              investment.investment.currency,
-              size: 40
-            ),
+                investment.investment.currency,
+                size: 40),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,14 +68,30 @@ class DevelopedInvestmentCard extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            Text(
-              investment.development.toString(),
-              style: CryptoTextStyle.balanceDevelopment(investment.isPositive),
+            Column(
+              children: [
+                Text(
+                  investment.development.toString(),
+                  style:
+                      CryptoTextStyle.balanceDevelopment(investment.isPositive),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  _formatInvestmentDate(investment.investment.buyingTime),
+                  style: CryptoTextStyle.investmentCardTertiary,
+                ),
+              ],
             ),
             const SizedBox(width: 8)
           ],
         ),
       ),
     );
+  }
+
+  String _formatInvestmentDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}.'
+        '${date.month.toString().padLeft(2, '0')}.'
+        '${date.year}';
   }
 }
