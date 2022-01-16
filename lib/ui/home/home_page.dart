@@ -1,4 +1,5 @@
 import 'package:cryptowatcherx/bloc/home/home_bloc.dart';
+import 'package:cryptowatcherx/data/injection/dependency_injector.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/ui/core/balance_bar.dart';
 import 'package:cryptowatcherx/ui/core/developed_investment_card.dart';
@@ -6,7 +7,7 @@ import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final HomeBloc _bloc = HomeBloc();
+  final HomeBloc _bloc = DependencyInjector.get<HomeBloc>();
 
   HomePage({Key? key}) : super(key: key);
 

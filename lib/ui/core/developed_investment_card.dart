@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cryptowatcherx/data/core/crypto_currency.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
@@ -28,8 +29,8 @@ class DevelopedInvestmentCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.network(
-              _buildIconUrl(
+            CachedNetworkImage(
+              imageUrl: _buildIconUrl(
                   investment.investment.currency, 48, CryptoColors.background),
               height: 48,
             ),

@@ -6,17 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'bloc/login/login_state.dart';
+import 'data/injection/dependency_injector.dart';
 import 'ui/login/login_page.dart';
 
-void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: CryptoColors.backgroundDark
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupSystemStyle();
+  await DependencyInjector.setupDependencyInjection();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+void setupSystemStyle() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: CryptoColors.backgroundDark,
+    ),
+  );
+}
 
+class MyApp extends StatelessWidget {
   final LoginBloc _bloc = LoginBloc();
 
   MyApp({Key? key}) : super(key: key);
@@ -38,17 +46,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: StreamBuilder<LoginState>(
-        stream: _bloc.loginState,
-        builder: (context, snapshot) {
-
-          LoginState? state = snapshot.data;
-          if (state != null && state == LoginState.loggedIn) {
-            return HomePage();
-          } else {
-            return const LoginPage();
-          }
-        }
-      ),
+          stream: _bloc.loginState,
+          builder: (context, snapshot) {
+            LoginState? state = snapshot.data;
+            if (state != null && state == LoginState.loggedIn) {
+              return HomePage();
+            } else {
+              return const LoginPage();
+            }
+          }),
     );
   }
 }

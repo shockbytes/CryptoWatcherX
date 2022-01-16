@@ -1,13 +1,11 @@
 import 'package:cryptowatcherx/data/core/money.dart';
-import 'package:cryptowatcherx/data/investment/in_memory_investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/data/investment/model/investment.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc {
-  final InvestmentRepository _investmentRepository =
-      InMemoryInvestmentRepository();
+  final InvestmentRepository _investmentRepository;
 
   BehaviorSubject<List<Investment>> _investmentSubject = BehaviorSubject();
 
@@ -27,7 +25,7 @@ class HomeBloc {
         ).toList();
       });
 
-  HomeBloc() {
+  HomeBloc(this._investmentRepository) {
     _investmentSubject
         .addStream(_investmentRepository.getInvestments().asStream());
   }

@@ -1,13 +1,30 @@
 import 'package:cryptowatcherx/bloc/balance/balance.dart';
 import 'package:cryptowatcherx/bloc/balance/balance_bloc.dart';
+import 'package:cryptowatcherx/data/injection/dependency_injector.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/material.dart';
 
-class BalanceBar extends StatelessWidget implements PreferredSizeWidget {
-  final BalanceBloc _bloc = BalanceBloc();
+class BalanceBar extends StatefulWidget implements PreferredSizeWidget {
 
-  BalanceBar({Key? key}) : super(key: key);
+  const BalanceBar({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _BalanceBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(164);
+}
+
+class _BalanceBarState extends State<BalanceBar> {
+
+  final BalanceBloc _bloc = DependencyInjector.get<BalanceBloc>();
+
+  @override
+  void initState() {
+    // _bloc.fetch();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +69,4 @@ class BalanceBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
   }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(164);
 }
