@@ -10,23 +10,26 @@ class HomeBloc {
   BehaviorSubject<List<Investment>> _investmentSubject = BehaviorSubject();
 
   Stream<List<DevelopedInvestment>> get investments =>
-      _investmentSubject.stream.map((investments) {
+      _investmentRepository.getInvestments().map((investments) {
         return investments.map(
           (investment) {
             // TODO Load real prices here
             return DevelopedInvestment(
               investment,
               Money(
-                14.00,
-                FiatCurrency.eur,
+                amount: 14.00,
+                currency: FiatCurrency.eur,
               ),
             );
           },
         ).toList();
       });
 
-  HomeBloc(this._investmentRepository) {
-    _investmentSubject
-        .addStream(_investmentRepository.getInvestments());
+  HomeBloc(this._investmentRepository);
+
+  void fetch() {
+
+//     _investmentRepository.getInvestments().listen((investments) => _investmentSubject.add(investments));
+//     _investmentSubject.addStream(_investmentRepository.getInvestments());
   }
 }

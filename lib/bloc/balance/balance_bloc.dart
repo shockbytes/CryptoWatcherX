@@ -12,22 +12,19 @@ class BalanceBloc {
 
   Stream<Balance> get balance => _balanceSubject.stream;
 
-  BalanceBloc(this._investmentRepository) {
-    fetch();
-  }
+  BalanceBloc(this._investmentRepository);
 
-  Future fetch() async {
-
-    Money invested = await _investmentRepository.getInvestedMoney();
-
-    _balanceSubject.add(
-      Balance(
-        invested: invested,
-        current: Money(
-          744.23,
-          FiatCurrency.eur,
+  fetch() {
+    _investmentRepository.getInvestedMoney().then((invested) {
+      _balanceSubject.add(
+        Balance(
+          invested: invested,
+          current: Money(
+            amount: 744.23,
+            currency: FiatCurrency.eur,
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

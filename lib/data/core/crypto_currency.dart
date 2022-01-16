@@ -46,4 +46,8 @@ extension CryptoCurrencyExtension on CryptoCurrency {
   String get code {
     return name.toUpperCase();
   }
+
+  static CryptoCurrency ofCode(String str) {
+    return CryptoCurrency.values.firstWhere((element) => element.code == str);
+  }
 }

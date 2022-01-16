@@ -9,13 +9,19 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
   final List<Investment> _investments = [
     Investment(
       currency: CryptoCurrency.btc,
-      buyingPrice: Money(12.0, FiatCurrency.eur),
+      buyingPrice: Money(
+        amount: 12.0,
+        currency: FiatCurrency.eur,
+      ),
       buyingTime: DateTime.now(),
       amount: 12,
     ),
     Investment(
       currency: CryptoCurrency.eth,
-      buyingPrice: Money(12.0, FiatCurrency.eur),
+      buyingPrice: Money(
+        amount: 12.0,
+        currency: FiatCurrency.eur,
+      ),
       buyingTime: DateTime.now(),
       amount: 2,
     ),
@@ -51,6 +57,9 @@ class InMemoryInvestmentRepository implements InvestmentRepository {
       (sum, investment) => sum + investment.buyingPrice.amount,
     );
 
-    return Money(sum, currency);
+    return Money(
+      amount: sum,
+      currency: currency,
+    );
   }
 }

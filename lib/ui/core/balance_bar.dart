@@ -20,7 +20,7 @@ class _BalanceBarState extends State<BalanceBar> {
 
   @override
   void initState() {
-    // _bloc.fetch();
+    _bloc.fetch();
     super.initState();
   }
 

@@ -1,3 +1,4 @@
+import 'package:cryptowatcherx/data/investment/firebase_investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/in_memory_investment_repository.dart';
 import 'package:cryptowatcherx/data/investment/investment_repository.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +14,7 @@ class RepositoryInjector {
 
   static _setupInvestmentRepository() {
     _getIt.registerSingletonAsync<InvestmentRepository>(
-      () async => InMemoryInvestmentRepository(),
+      () async => FirebaseInvestmentRepository(),
       dependsOn: [],
     );
   }

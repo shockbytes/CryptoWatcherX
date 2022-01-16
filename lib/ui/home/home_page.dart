@@ -11,7 +11,9 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   final HomeBloc _bloc = DependencyInjector.get<HomeBloc>();
 
-  HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key) {
+    _bloc.fetch();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -2,10 +2,10 @@ class Money {
   final double amount;
   final FiatCurrency currency;
 
-  Money(
-    this.amount,
-    this.currency,
-  );
+  Money({
+    required this.amount,
+    required this.currency,
+  });
 
   Money.empty(): amount = 0, currency = FiatCurrency.eur;
 
@@ -38,6 +38,10 @@ extension FiatCurrencyExtension on FiatCurrency {
       case FiatCurrency.usd:
         return '\$';
     }
+  }
+
+  static FiatCurrency? ofCode(String str) {
+    return FiatCurrency.values.firstWhere((currency) => currency.code == str);
   }
 
 }
