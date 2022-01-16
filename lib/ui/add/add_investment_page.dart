@@ -71,7 +71,7 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
                                   cc,
                                   size: 24,
                                 ),
-                                const SizedBox(width: 4),
+                                const SizedBox(width: 8),
                                 Text(
                                   cc.coinName,
                                   style: CryptoTextStyle.textDropdown,
