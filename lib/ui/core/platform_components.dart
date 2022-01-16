@@ -23,6 +23,19 @@ class PlatformComponents {
       return TextField(
         controller: controller,
         keyboardType: inputType,
+        cursorColor: CryptoColors.accent,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+            borderSide: BorderSide(
+              color: CryptoColors.accent,
+              width: 2,
+            ),
+          ),
+        ),
       );
     }
   }
