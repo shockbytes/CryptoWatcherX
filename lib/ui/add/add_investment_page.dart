@@ -18,7 +18,6 @@ class AddInvestmentPage extends StatefulWidget {
 }
 
 class _AddInvestmentPageState extends State<AddInvestmentPage> {
-
   final AddBloc _bloc = DependencyInjector.get<AddBloc>();
 
   final CryptoCurrencyImagePathService _imagePathService =
@@ -184,16 +183,29 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
 
   _validateAndProceed(BuildContext context) async {
     if (!_validate()) {
-      // TODO Show error dialog
+      await showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Missing data!'),
+          content: Text('Please add all the data to create a new investment'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'Okay',
+                style: TextStyle(color: CryptoColors.accent),
+              ),
+            ),
+          ],
+        ),
+      );
       return;
     }
 
     Investment investment = Investment(
       currency: _selectedCryptoCurrency,
-      buyingPrice: Money(
-        double.parse(_fiatInputController.text),
-        _selectedFiatCurrency
-      ),
+      buyingPrice:
+          Money(double.parse(_fiatInputController.text), _selectedFiatCurrency),
       buyingTime: _selectedDate,
       amount: double.parse(_cryptoInputController.text),
     );

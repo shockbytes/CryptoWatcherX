@@ -6,7 +6,7 @@ Cross platform implementation of CryptoWatcher Android App
 
 - [x] App Icon
 - [x] Add Date of purchase
-- [ ] Handle add new errors
+- [x] Handle add new errors
 - [ ] Setup Firebase
 - [x] Load icons
 - [ ] Splash Screen
