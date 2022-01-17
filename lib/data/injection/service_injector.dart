@@ -2,6 +2,7 @@ import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/crypto/image/coin_icons_crypto_currency_image_path_service.dart';
 import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_service.dart';
 import 'package:cryptowatcherx/data/crypto/price/api/coinmarketcap_api.dart';
+import 'package:cryptowatcherx/data/crypto/price/cache/local_storage_price_provider_cache.dart';
 import 'package:cryptowatcherx/data/crypto/price/coinmarketcap_price_provider.dart';
 import 'package:cryptowatcherx/data/crypto/price/price_provider.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/api/exchange_rates_io_api.dart';
@@ -32,6 +33,7 @@ class ServiceInjector {
   static _setupPriceProvider() {
     _getIt.registerSingletonAsync<PriceProvider>(
       () async => CoinmarketCapPriceProvider(
+        LocalStoragePriceProviderCache(),
         CoinmarketCapApi(),
       ),
       dependsOn: [],
