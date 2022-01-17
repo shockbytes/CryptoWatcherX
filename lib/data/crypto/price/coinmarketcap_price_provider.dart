@@ -13,6 +13,22 @@ class CoinmarketCapPriceProvider implements PriceProvider {
     );
   }
 
+  /*
+
+      @GET("v1/cryptocurrency/quotes/latest")
+    fun getSpotPrice(
+        @Path("symbol") cryptoCurrencies: String,
+        @Query("CMC_PRO_API_KEY") apiKey: String = API_KEY
+    ): Observable<List<CoinMarketCapApiObject>>
+
+    companion object {
+
+        const val SERVICE_ENDPOINT = "https://pro-api.coinmarketcap.com"
+        private const val API_KEY = "719be2f8-d2cc-4d61-a011-e18bcb841261"
+    }
+
+   */
+
   @override
   PriceSource get priceSource => PriceSource(
         name: 'CoinmarketCap',

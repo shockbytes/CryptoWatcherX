@@ -3,6 +3,8 @@ import 'package:cryptowatcherx/data/crypto/image/coin_icons_crypto_currency_imag
 import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_service.dart';
 import 'package:cryptowatcherx/data/crypto/price/coinmarketcap_price_provider.dart';
 import 'package:cryptowatcherx/data/crypto/price/price_provider.dart';
+import 'package:cryptowatcherx/data/fiat_conversion/api/fixer_io_api.dart';
+import 'package:cryptowatcherx/data/fiat_conversion/cache/local_storage_conversion_cache.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fixer_io_fiat_converter.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 import 'package:cryptowatcherx/data/pipeline/pipeline.dart';
@@ -35,7 +37,10 @@ class ServiceInjector {
 
   static _setupFiatConverter() {
     _getIt.registerSingletonAsync<FiatConverter>(
-      () async => FixerIoFiatConverter(),
+      () async => FixerIoFiatConverter(
+        LocalStorageConversionCache(),
+        FixerIoApi(),
+      ),
       dependsOn: [],
     );
   }

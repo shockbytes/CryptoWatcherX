@@ -14,6 +14,13 @@ class Money {
     );
   }
 
+  Money convertWith(double rate) {
+    return Money(
+      amount: amount * rate,
+      currency: currency,
+    );
+  }
+
   Money.empty()
       : amount = 0,
         currency = FiatCurrency.eur;
