@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class PlatformComponents {
@@ -14,6 +15,36 @@ class PlatformComponents {
   }) {
     if (hint != null && controller.text.isEmpty) {
       controller.text = hint;
+    }
+
+    // TODO How can we improve this?
+    if (kIsWeb) {
+      return TextField(
+        controller: controller,
+        keyboardType: inputType,
+        obscureText: obscureText,
+        style: CryptoTextStyle.textDefault,
+        cursorColor: CryptoColors.accent,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+            borderSide: BorderSide(
+              color: CryptoColors.accent,
+              width: 2,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.0),
+            borderSide: BorderSide(
+              color: Colors.white,
+              width: 1,
+            ),
+          ),
+        ),
+      );
     }
 
     if (Platform.isIOS || Platform.isMacOS) {

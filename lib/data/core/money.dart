@@ -7,7 +7,16 @@ class Money {
     required this.currency,
   });
 
-  Money.empty(): amount = 0, currency = FiatCurrency.eur;
+  Money times(double multiplier) {
+    return Money(
+      amount: amount * multiplier,
+      currency: currency,
+    );
+  }
+
+  Money.empty()
+      : amount = 0,
+        currency = FiatCurrency.eur;
 
   @override
   String toString() {
@@ -21,9 +30,8 @@ enum FiatCurrency {
 }
 
 extension FiatCurrencyExtension on FiatCurrency {
-
   String get code {
-    switch(this) {
+    switch (this) {
       case FiatCurrency.eur:
         return 'EUR';
       case FiatCurrency.usd:
@@ -43,5 +51,4 @@ extension FiatCurrencyExtension on FiatCurrency {
   static FiatCurrency? ofCode(String str) {
     return FiatCurrency.values.firstWhere((currency) => currency.code == str);
   }
-
 }

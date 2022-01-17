@@ -11,6 +11,7 @@ enum CryptoCurrency {
   rsr,
   band,
   joe,
+  gtc
 }
 
 extension CryptoCurrencyExtension on CryptoCurrency {
@@ -40,6 +41,8 @@ extension CryptoCurrencyExtension on CryptoCurrency {
         return 'Band Protocol';
       case CryptoCurrency.joe:
         return 'JOE';
+      case CryptoCurrency.gtc:
+        return 'Gitcoin';
     }
   }
 

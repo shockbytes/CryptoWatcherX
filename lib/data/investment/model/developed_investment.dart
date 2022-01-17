@@ -8,10 +8,10 @@ class DevelopedInvestment {
   final Investment investment;
   final Money currentPrice;
 
-  DevelopedInvestment(
-    this.investment,
-    this.currentPrice,
-  );
+  DevelopedInvestment({
+    required this.investment,
+    required this.currentPrice,
+  });
 
   Percentage get development {
     return computePercentage(

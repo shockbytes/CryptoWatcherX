@@ -12,17 +12,23 @@ class CoinIconsCryptoCurrencyImagePathService
     int size = 64,
     Color color = CryptoColors.background,
   }) {
-    return CachedNetworkImage(
-      imageUrl:
-          'https://api.coinicons.net/icon/${currency.code.toLowerCase()}/128x128',
-      errorWidget: (context, url, error) => Container(
-        width: size.toDouble(),
-        color: Colors.red,
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        CryptoColors.background,
+        BlendMode.color,
       ),
-      placeholder: (context, url) => Container(
-        width: size.toDouble(),
+      child: CachedNetworkImage(
+        imageUrl:
+            'https://api.coinicons.net/icon/${currency.code.toLowerCase()}/128x128',
+        errorWidget: (context, url, error) => Container(
+          width: size.toDouble(),
+          color: Colors.red,
+        ),
+        placeholder: (context, url) => Container(
+          width: size.toDouble(),
+        ),
+        height: size.toDouble(),
       ),
-      height: size.toDouble(),
     );
   }
 }

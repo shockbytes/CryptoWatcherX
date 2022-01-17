@@ -12,9 +12,7 @@ Cross platform implementation of CryptoWatcher Android App
 - [x] Login for Firebase
 - [x] Persist on Firebase
 - [x] Sort by date
-- [ ] Splash Screen
-- [ ] Proper Icons!
-
+- [x] Proper Icons!
 - [ ] Load prices via API
 - [ ] Convert Fiat currencies
   

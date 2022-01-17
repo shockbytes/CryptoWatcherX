@@ -3,6 +3,7 @@ import 'package:cryptowatcherx/bloc/balance/balance_bloc.dart';
 import 'package:cryptowatcherx/bloc/home/home_bloc.dart';
 import 'package:cryptowatcherx/bloc/login/login_bloc.dart';
 import 'package:cryptowatcherx/data/investment/investment_repository.dart';
+import 'package:cryptowatcherx/data/pipeline/pipeline.dart';
 import 'package:get_it/get_it.dart';
 
 class BlocInjector {
@@ -21,9 +22,11 @@ class BlocInjector {
     _getIt.registerSingletonWithDependencies<HomeBloc>(
       () => HomeBloc(
         _getIt<InvestmentRepository>(),
+        _getIt<Pipeline>()
       ),
       dependsOn: [
         InvestmentRepository,
+        Pipeline
       ],
     );
   }

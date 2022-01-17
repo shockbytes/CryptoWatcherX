@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "931221939076",
+    "firebase_url": "https://cryptowatcherx-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cryptowatcherx",
+    "storage_bucket": "cryptowatcherx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931221939076:android:8563d994d1fadb0d5f33d1",
+        "android_client_info": {
+          "package_name": "at.shockbytes.cryptowatcherx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931221939076-tcooa1nnci387at8eijvg1it6mim4obe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx9f5tDUflTpZ1417nh8cAdoQPwWB58wk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931221939076-tcooa1nnci387at8eijvg1it6mim4obe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "931221939076-9hoqed4ism3qgu0et7ia5fa5ragfsqcr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "at.shockbytes.cryptowatcherx"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

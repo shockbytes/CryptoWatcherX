@@ -17,8 +17,8 @@ class DependencyInjector {
   static Future<void> setupDependencyInjection() async {
 
     ApiInjector.setup();
-    ServiceInjector.setup();
     RepositoryInjector.setup();
+    ServiceInjector.setup();
     BlocInjector.setup();
 
     return _getIt.allReady(timeout: const Duration(seconds: 10));
