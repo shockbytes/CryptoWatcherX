@@ -34,8 +34,9 @@ class DevelopedInvestmentCard extends StatelessWidget {
         child: Row(
           children: [
             _imagePathService.buildCryptoCurrencyImage(
-                investment.investment.currency,
-                size: 40),
+              investment.investment.currency,
+              size: 32,
+            ),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

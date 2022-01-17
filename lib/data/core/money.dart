@@ -1,3 +1,5 @@
+import 'package:cryptowatcherx/data/fiat_conversion/conversion.dart';
+
 class Money {
   final double amount;
   final FiatCurrency currency;
@@ -14,10 +16,10 @@ class Money {
     );
   }
 
-  Money convertWith(double rate) {
+  Money convertWith(Conversion conversion) {
     return Money(
-      amount: amount * rate,
-      currency: currency,
+      amount: amount * conversion.rate,
+      currency: conversion.target,
     );
   }
 

@@ -170,7 +170,7 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
                     });
                   },
                 ),
-                const Spacer(),
+                SizedBox(height: 64),
                 OutlinedButton(
                   onPressed: () => _validateAndProceed(context),
                   child: Text(

@@ -37,7 +37,7 @@ class CryptoTextStyle {
   static TextStyle balanceDevelopment(bool isPositive) => TextStyle(
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w700,
-        color: isPositive ? CryptoColors.accent: Colors.red,
+        color: isPositive ? CryptoColors.accent: Colors.white54,
         fontSize: 16,
       );
 

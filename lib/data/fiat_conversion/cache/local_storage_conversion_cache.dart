@@ -4,7 +4,7 @@ import 'package:localstorage/localstorage.dart';
 
 class LocalStorageConversionCache implements ConversionCache {
   final LocalStorage _storage = LocalStorage('conversion.json');
-  final String _key = 'conversion';
+  final String _key = 'conversion_1';
 
   @override
   Future<Conversion?> getConversion() async {

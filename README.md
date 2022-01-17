@@ -13,8 +13,9 @@ Cross platform implementation of CryptoWatcher Android App
 - [x] Persist on Firebase
 - [x] Sort by date
 - [x] Proper Icons!
+- [x] Convert Fiat currencies
+- [ ] Fetch Fiat Currency on startup
 - [ ] Load prices via API
-- [ ] Convert Fiat currencies
   
 - [ ] First class Web Support (incl. Hosting)
 - [ ] API for overall Finance app

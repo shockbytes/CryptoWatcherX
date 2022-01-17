@@ -5,16 +5,16 @@ import 'package:cryptowatcherx/data/fiat_conversion/conversion.dart';
 
 import 'fixer_io_response.dart';
 
-class FixerIoApi implements FiatApi {
-  // This is a key for the free plan, there's not much to gain here.
-  final _API_KEY = 'e2ff830729525d15d5a40f0f327f7cd6';
+class ExchangeRatesIoApi implements FiatApi {
+  final _API_KEY = 'f2984427db1fe53732506d9fcac18dd4';
 
+  @override
   Future<Conversion> getCurrencyConversionRates(
     FiatCurrency source,
     FiatCurrency target,
   ) {
     return BaseApiClient.get(
-      'http://data.fixer.io/latest',
+      'http://api.exchangeratesapi.io/v1/latest',
       query: {
         'symbols': [source, target].map((e) => e.code).join(','),
         'access_key': _API_KEY
@@ -22,7 +22,7 @@ class FixerIoApi implements FiatApi {
     ).then((json) {
       return FixerIoResponse.fromJson(json);
     }).then(
-      (value) {
+          (value) {
         FiatCurrency base = FiatCurrencyExtension.ofCode(value.base)!;
 
         double rate = (base == target)
