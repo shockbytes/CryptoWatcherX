@@ -34,7 +34,13 @@ class HomePage extends StatelessWidget {
               },
             );
           } else if (snapshot.hasError) {
-            return Container(color: Colors.red);
+            return Container(
+              child: Center(
+                child: Text(
+                  snapshot.error.toString(),
+                ),
+              ),
+            );
           } else {
             return Center(
                 child: Text(

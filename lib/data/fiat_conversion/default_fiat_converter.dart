@@ -11,19 +11,25 @@ class DefaultFiatConverter implements FiatConverter {
   DefaultFiatConverter(this._cache, this._api);
 
   @override
-  Future<Money> convert(Money money, FiatCurrency target) async {
-    if (_isSameCurrency(money, target)) {
-      return money;
-    } else if (await _hasCachedValue(money.currency, target, DateTime.now())) {
-      return compute(money, (await _cache.getConversion())!);
+  Future<Conversion> prefetch(FiatCurrency source, FiatCurrency target) async {
+    if (_isSameCurrency(source, target)) {
+      return Conversion.identity(target);
+    } else if (await _hasCachedValue(source, target, DateTime.now())) {
+      return (await _cache.getConversion())!;
     }
 
     Conversion conversion = await _api.getCurrencyConversionRates(
-      money.currency,
+      source,
       target,
     );
     await _cache.putConversion(conversion);
 
+    return conversion;
+  }
+
+  @override
+  Future<Money> convert(Money money, FiatCurrency target) async {
+    Conversion conversion = await prefetch(money.currency, target);
     return compute(money, conversion);
   }
 
@@ -31,8 +37,8 @@ class DefaultFiatConverter implements FiatConverter {
     return money.convertWith(conversion);
   }
 
-  bool _isSameCurrency(Money money, FiatCurrency target) {
-    return money.currency == target;
+  bool _isSameCurrency(FiatCurrency source, FiatCurrency target) {
+    return source == target;
   }
 
   Future<bool> _hasCachedValue(

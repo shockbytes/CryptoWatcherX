@@ -31,4 +31,13 @@ class Conversion {
       'timestamp': timestamp.toIso8601String()
     };
   }
+
+  static Conversion identity(FiatCurrency target) {
+    return Conversion(
+      source: target,
+      target: target,
+      rate: 1,
+      timestamp: DateTime.now(),
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:cryptowatcherx/data/core/money.dart';
+import 'package:cryptowatcherx/data/crypto/price/crypto_money_snapshot.dart';
 import 'package:cryptowatcherx/data/crypto/price/price_provider.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
@@ -13,21 +14,35 @@ class Pipeline {
 
   Future<List<DevelopedInvestment>> pipeInvestments(
     List<Investment> investments,
-  ) {
+  ) async {
+    List<FiatCurrency> fiatCurrencies = _extractFiatCurrencies(investments);
+    fiatCurrencies.forEach(
+      (fc) async {
+        await _fiatConverter.prefetch(fc, _targetCurrency);
+      },
+    );
+
+    // Load all prices per Unit
+    List<CryptoMoneySnapshot> currentPricesPerUnit = await _priceProvider
+        .getCurrentPrices(investments.map((e) => e.currency).toList());
+
     return Future.wait(
       investments.map(
-        (Investment investment) async => await _pipe(investment),
+        (Investment investment) async {
+          CryptoMoneySnapshot snapshot = currentPricesPerUnit.firstWhere(
+            (CryptoMoneySnapshot s) => s.currency == investment.currency,
+          );
+
+          return await _pipe(investment, snapshot.money);
+        },
       ),
     );
   }
 
-  Future<DevelopedInvestment> _pipe(Investment investment) async {
-
-    // Load price per Unit
-    Money currentPricePerUnit = await _priceProvider.getCurrentPrice(
-      investment.currency,
-    );
-
+  Future<DevelopedInvestment> _pipe(
+    Investment investment,
+    Money currentPricePerUnit,
+  ) async {
     // Load price per purchased amount
     Money currentPrice = currentPricePerUnit.times(investment.amount);
 
@@ -41,5 +56,14 @@ class Pipeline {
       investment: investment,
       currentPrice: priceInTargetCurrency,
     );
+  }
+
+  List<FiatCurrency> _extractFiatCurrencies(List<Investment> investments) {
+    return investments
+        .map(
+          (e) => e.buyingPrice.currency,
+        )
+        .toSet()
+        .toList();
   }
 }
