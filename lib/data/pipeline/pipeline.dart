@@ -4,6 +4,7 @@ import 'package:cryptowatcherx/data/crypto/price/price_provider.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/data/investment/model/investment.dart';
+import 'package:cryptowatcherx/data/pipeline/developed_investments_publisher.dart';
 
 class Pipeline {
   final PriceProvider _priceProvider;
@@ -26,7 +27,7 @@ class Pipeline {
     List<CryptoMoneySnapshot> currentPricesPerUnit = await _priceProvider
         .getCurrentPrices(investments.map((e) => e.currency).toList());
 
-    return Future.wait(
+    List<DevelopedInvestment> developedInvestments = await Future.wait(
       investments.map(
         (Investment investment) async {
           CryptoMoneySnapshot snapshot = currentPricesPerUnit.firstWhere(
@@ -37,6 +38,10 @@ class Pipeline {
         },
       ),
     );
+
+    DevelopedInvestmentsPublisher.enqueue(developedInvestments);
+
+    return developedInvestments;
   }
 
   Future<DevelopedInvestment> _pipe(
