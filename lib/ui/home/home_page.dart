@@ -5,7 +5,6 @@ import 'package:cryptowatcherx/ui/add/add_investment_page.dart';
 import 'package:cryptowatcherx/ui/core/balance_bar.dart';
 import 'package:cryptowatcherx/ui/core/developed_investment_card.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
-import 'package:cryptowatcherx/util/crypto_text_style.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -43,14 +42,14 @@ class HomePage extends StatelessWidget {
             );
           } else {
             return Center(
-                child: Text(
-              'Loading',
-              style: CryptoTextStyle.textDefault,
-            ));
+                child: CircularProgressIndicator(
+                  color: CryptoColors.text,
+                )
+            );
           }
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
+      floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
@@ -60,9 +59,49 @@ class HomePage extends StatelessWidget {
           );
         },
         backgroundColor: CryptoColors.accent,
-        label: Text(
-          'New crypto',
-          style: CryptoTextStyle.textDefault,
+        child: Icon(
+          Icons.add_outlined,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        color: CryptoColors.backgroundDark,
+        shape: CircularNotchedRectangle(),
+        notchMargin: 5.0,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            IconButton(
+              onPressed: () {
+                // TODO Show settings
+              },
+              icon: Icon(
+                Icons.settings_outlined,
+                color: CryptoColors.text,
+              ),
+            ),
+            SizedBox(width: 12),
+            IconButton(
+              onPressed: () => _bloc.logout(),
+              icon: Icon(
+                Icons.logout,
+                color: CryptoColors.text,
+              ),
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 90),
+              child: IconButton(
+                onPressed: () => _bloc.refresh(),
+                icon: Icon(
+                  Icons.refresh_outlined,
+                  color: CryptoColors.text,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

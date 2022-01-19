@@ -54,17 +54,18 @@ class _LoginPageState extends State<LoginPage> {
           shrinkWrap: true,
           children: [
             SizedBox(height: 32),
+            Image.asset('assets/launcher-icon/ic_launcher.png'),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Log into\nCrypto Watcher',
-                  style: CryptoTextStyle.balanceCurrent,
+                  style: CryptoTextStyle.header,
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 32),
             Text(
               'Username',
               style: CryptoTextStyle.textDefault,
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
               _emailController,
               inputType: TextInputType.emailAddress,
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 32),
             Text(
               'Password',
               style: CryptoTextStyle.textDefault,
@@ -82,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
               _passwordController,
               obscureText: true,
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 64),
             ElevatedButton(
               onPressed: () => _bloc.login(
                 email: _emailController.text,

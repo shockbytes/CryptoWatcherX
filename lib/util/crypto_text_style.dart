@@ -14,11 +14,18 @@ class CryptoTextStyle {
       );
 
   static TextStyle textDropdown = const TextStyle(
-        fontFamily: primaryFontFamily,
-        fontWeight: FontWeight.w500,
-        color: CryptoColors.text,
-        fontSize: 12,
-      );
+    fontFamily: primaryFontFamily,
+    fontWeight: FontWeight.w500,
+    color: CryptoColors.text,
+    fontSize: 12,
+  );
+
+  static var header = const TextStyle(
+    fontFamily: primaryFontFamily,
+    fontWeight: FontWeight.w700,
+    color: CryptoColors.text,
+    fontSize: 24,
+  );
 
   static TextStyle get balanceCurrent => const TextStyle(
         fontFamily: primaryFontFamily,
@@ -37,7 +44,7 @@ class CryptoTextStyle {
   static TextStyle balanceDevelopment(bool isPositive) => TextStyle(
         fontFamily: primaryFontFamily,
         fontWeight: FontWeight.w700,
-        color: isPositive ? CryptoColors.accent: Colors.white54,
+        color: isPositive ? CryptoColors.accent : Colors.white54,
         fontSize: 16,
       );
 

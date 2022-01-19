@@ -11,7 +11,7 @@ enum CryptoCurrency {
   rsr,
   band,
   joe,
-  gtc
+  gtc,
 }
 
 extension CryptoCurrencyExtension on CryptoCurrency {

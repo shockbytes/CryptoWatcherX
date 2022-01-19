@@ -14,7 +14,7 @@ class CoinIconsCryptoCurrencyImagePathService
   }) {
     return ColorFiltered(
       colorFilter: ColorFilter.mode(
-        CryptoColors.background,
+        color,
         BlendMode.color,
       ),
       child: CachedNetworkImage(

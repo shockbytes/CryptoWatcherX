@@ -63,36 +63,44 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
                       ),
                     ),
                     const SizedBox(width: 32),
-                    DropdownButton<CryptoCurrency>(
-                      dropdownColor: CryptoColors.backgroundDark,
-                      items: CryptoCurrency.values
-                          .map(
-                            (cc) => DropdownMenuItem(
-                              value: cc,
-                              child: Row(
-                                children: [
-                                  _imagePathService.buildCryptoCurrencyImage(
+                    SizedBox(
+                      width: 170,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<CryptoCurrency>(
+                          iconEnabledColor: CryptoColors.text,
+                          dropdownColor: CryptoColors.backgroundDark,
+                          selectedItemBuilder: (BuildContext context) {
+                            return CryptoCurrency.values
+                                .map(
+                                  (cc) => _buildCryptoDropdownWidget(
                                     cc,
-                                    size: 24,
+                                    imageBackground: CryptoColors.background,
                                   ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    cc.coinName,
-                                    style: CryptoTextStyle.textDropdown,
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      value: _selectedCryptoCurrency,
-                      onChanged: (CryptoCurrency? newValue) {
-                        setState(() {
-                          if (newValue != null) {
-                            _selectedCryptoCurrency = newValue;
-                          }
-                        });
-                      },
+                                )
+                                .toList();
+                          },
+                          items: CryptoCurrency.values
+                              .map(
+                                (cc) => DropdownMenuItem(
+                                  value: cc,
+                                  child: _buildCryptoDropdownWidget(
+                                    cc,
+                                    imageBackground:
+                                        CryptoColors.backgroundDark,
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          value: _selectedCryptoCurrency,
+                          onChanged: (CryptoCurrency? newValue) {
+                            setState(() {
+                              if (newValue != null) {
+                                _selectedCryptoCurrency = newValue;
+                              }
+                            });
+                          },
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -115,36 +123,42 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
                       ),
                     ),
                     const SizedBox(width: 32),
-                    DropdownButton<FiatCurrency>(
-                      dropdownColor: CryptoColors.backgroundDark,
-                      items: FiatCurrency.values
-                          .map(
-                            (fc) => DropdownMenuItem(
-                              value: fc,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    fc.symbol,
-                                    style: CryptoTextStyle.textDropdown,
+                    SizedBox(
+                      width: 170,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<FiatCurrency>(
+                          iconEnabledColor: CryptoColors.text,
+                          dropdownColor: CryptoColors.backgroundDark,
+                          items: FiatCurrency.values
+                              .map(
+                                (fc) => DropdownMenuItem(
+                                  value: fc,
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        fc.symbol,
+                                        style: CryptoTextStyle.textDropdown,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        fc.code,
+                                        style: CryptoTextStyle.textDropdown,
+                                      )
+                                    ],
                                   ),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                    fc.code,
-                                    style: CryptoTextStyle.textDropdown,
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      value: _selectedFiatCurrency,
-                      onChanged: (FiatCurrency? newValue) {
-                        setState(() {
-                          if (newValue != null) {
-                            _selectedFiatCurrency = newValue;
-                          }
-                        });
-                      },
+                                ),
+                              )
+                              .toList(),
+                          value: _selectedFiatCurrency,
+                          onChanged: (FiatCurrency? newValue) {
+                            setState(() {
+                              if (newValue != null) {
+                                _selectedFiatCurrency = newValue;
+                              }
+                            });
+                          },
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -215,5 +229,25 @@ class _AddInvestmentPageState extends State<AddInvestmentPage> {
   bool _validate() {
     return _cryptoInputController.text.isNotEmpty &&
         _fiatInputController.text.isNotEmpty;
+  }
+
+  Widget _buildCryptoDropdownWidget(
+    CryptoCurrency cc, {
+    required Color imageBackground,
+  }) {
+    return Row(
+      children: [
+        _imagePathService.buildCryptoCurrencyImage(
+          cc,
+          size: 24,
+          color: imageBackground,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          cc.coinName,
+          style: CryptoTextStyle.textDropdown,
+        )
+      ],
+    );
   }
 }
