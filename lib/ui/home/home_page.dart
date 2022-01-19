@@ -4,6 +4,7 @@ import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/ui/add/add_investment_page.dart';
 import 'package:cryptowatcherx/ui/core/balance_bar.dart';
 import 'package:cryptowatcherx/ui/core/developed_investment_card.dart';
+import 'package:cryptowatcherx/ui/settings/settings_page.dart';
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,12 @@ class HomePage extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                // TODO Show settings
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                );
               },
               icon: Icon(
                 Icons.settings_outlined,
@@ -91,13 +97,16 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 90),
-              child: IconButton(
-                onPressed: () => _bloc.refresh(),
-                icon: Icon(
-                  Icons.refresh_outlined,
-                  color: CryptoColors.text,
+            Visibility(
+              visible: false,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 90),
+                child: IconButton(
+                  onPressed: () => _bloc.refresh(),
+                  icon: Icon(
+                    Icons.refresh_outlined,
+                    color: CryptoColors.text,
+                  ),
                 ),
               ),
             ),

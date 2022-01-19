@@ -2,6 +2,7 @@ import 'package:cryptowatcherx/data/core/api/base_api_client.dart';
 import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/api/fiat_api.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/conversion.dart';
+import 'package:cryptowatcherx/data/fiat_conversion/conversion_source.dart';
 
 import 'fixer_io_response.dart';
 
@@ -22,7 +23,7 @@ class ExchangeRatesIoApi implements FiatApi {
     ).then((json) {
       return FixerIoResponse.fromJson(json);
     }).then(
-          (value) {
+      (value) {
         FiatCurrency base = FiatCurrencyExtension.ofCode(value.base)!;
 
         double rate = (base == target)
@@ -38,4 +39,10 @@ class ExchangeRatesIoApi implements FiatApi {
       },
     );
   }
+
+  @override
+  ConversionSource get conversionSource => ConversionSource(
+        name: 'exchangeratesapi.io',
+        icon: 'https://exchangeratesapi.io/assets/images/exchangeratesapi_logo_white.svg',
+      );
 }

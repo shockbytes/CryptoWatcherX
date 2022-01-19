@@ -2,6 +2,7 @@ import 'package:cryptowatcherx/data/core/api/base_api_client.dart';
 import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/api/fiat_api.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/conversion.dart';
+import 'package:cryptowatcherx/data/fiat_conversion/conversion_source.dart';
 
 import 'fixer_io_response.dart';
 
@@ -38,4 +39,7 @@ class FixerIoApi implements FiatApi {
       },
     );
   }
+
+  @override
+  ConversionSource get conversionSource => throw UnimplementedError();
 }

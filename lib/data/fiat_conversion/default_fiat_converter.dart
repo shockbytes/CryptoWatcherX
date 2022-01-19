@@ -2,6 +2,7 @@ import 'package:cryptowatcherx/data/core/money.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/api/fiat_api.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/cache/conversion_cache.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/conversion.dart';
+import 'package:cryptowatcherx/data/fiat_conversion/conversion_source.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 
 class DefaultFiatConverter implements FiatConverter {
@@ -53,4 +54,7 @@ class DefaultFiatConverter implements FiatConverter {
         cached.source == source &&
         cached.target == target;
   }
+
+  @override
+  ConversionSource get conversionSource => _api.conversionSource;
 }

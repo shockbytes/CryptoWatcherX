@@ -8,10 +8,9 @@ class HomeBloc {
   final InvestmentRepository _investmentRepository;
   final Pipeline _pipeline;
 
-  Stream<List<DevelopedInvestment>> get investments =>
-      _investmentRepository.getInvestments().asyncMap(
-            (investments) async => _pipeline.pipeInvestments(investments),
-          );
+  Stream<List<DevelopedInvestment>> get investments => _investmentRepository
+      .getInvestments()
+      .asyncMap(_pipeline.pipeInvestments);
 
   HomeBloc(
     this._userRepository,
@@ -21,9 +20,7 @@ class HomeBloc {
 
   void fetch() {}
 
-  void refresh() {
-    // TODO
-  }
+  void refresh() {}
 
   void logout() {
     _userRepository.logout();

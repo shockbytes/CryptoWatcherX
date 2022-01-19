@@ -13,6 +13,13 @@ class CryptoTextStyle {
         fontSize: 16,
       );
 
+  static TextStyle textSettingsHeader = const TextStyle(
+    fontFamily: primaryFontFamily,
+    fontWeight: FontWeight.w500,
+    color: CryptoColors.text,
+    fontSize: 18,
+  );
+
   static TextStyle textDropdown = const TextStyle(
     fontFamily: primaryFontFamily,
     fontWeight: FontWeight.w500,
