@@ -84,12 +84,18 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             ),
             SizedBox(height: 64),
-            ElevatedButton(
+            TextButton(
               onPressed: () => _bloc.login(
                 email: _emailController.text,
                 password: _passwordController.text,
               ),
-              child: Text('Login'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(CryptoColors.accent),
+              ),
+              child: Text(
+                'Login',
+                style: CryptoTextStyle.textDefault,
+              ),
             ),
             SizedBox(height: 48),
           ],

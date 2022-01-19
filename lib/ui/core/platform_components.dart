@@ -17,41 +17,12 @@ class PlatformComponents {
       controller.text = hint;
     }
 
-    // TODO How can we improve this?
-    if (kIsWeb) {
-      return TextField(
-        controller: controller,
-        keyboardType: inputType,
-        obscureText: obscureText,
-        style: CryptoTextStyle.textDefault,
-        cursorColor: CryptoColors.accent,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6.0),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6.0),
-            borderSide: BorderSide(
-              color: CryptoColors.accent,
-              width: 2,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6.0),
-            borderSide: BorderSide(
-              color: Colors.white,
-              width: 1,
-            ),
-          ),
-        ),
-      );
-    }
-
     if (Platform.isIOS || Platform.isMacOS) {
       return CupertinoTextField(
         controller: controller,
         keyboardType: inputType,
         obscureText: obscureText,
+        style: CryptoTextStyle.textDefault,
         cursorColor: CryptoColors.accent,
         decoration: BoxDecoration(
           color: Colors.white38,
