@@ -10,6 +10,10 @@ import 'package:cryptowatcherx/data/fiat_conversion/cache/local_storage_conversi
 import 'package:cryptowatcherx/data/fiat_conversion/default_fiat_converter.dart';
 import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 import 'package:cryptowatcherx/data/pipeline/pipeline.dart';
+import 'package:cryptowatcherx/data/view/currency_view_mapper.dart';
+import 'package:cryptowatcherx/data/view/default_view_mapper.dart';
+import 'package:cryptowatcherx/data/view/default_view_provider.dart';
+import 'package:cryptowatcherx/data/view/view_provider.dart';
 import 'package:get_it/get_it.dart';
 
 class ServiceInjector {
@@ -21,6 +25,7 @@ class ServiceInjector {
     _setupImagePathService();
     _setupPriceProvider();
     _setupFiatConverter();
+    _setupViewProvider();
     _setupPipeline();
   }
 
@@ -50,16 +55,28 @@ class ServiceInjector {
     );
   }
 
+  static _setupViewProvider() {
+    _getIt.registerSingletonAsync<ViewProvider>(
+      () async => DefaultViewProvider([
+        DefaultViewMapper(),
+        CurrencyViewMapper(),
+      ]),
+      dependsOn: [],
+    );
+  }
+
   static _setupPipeline() {
     _getIt.registerSingletonWithDependencies<Pipeline>(
       () => Pipeline(
         _getIt<PriceProvider>(),
         _getIt<FiatConverter>(),
+        _getIt<ViewProvider>(),
         FiatCurrency.eur,
       ),
       dependsOn: [
         PriceProvider,
         FiatConverter,
+        ViewProvider,
       ],
     );
   }

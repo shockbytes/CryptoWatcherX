@@ -96,6 +96,16 @@ class HomePage extends StatelessWidget {
                 color: CryptoColors.text,
               ),
             ),
+            SizedBox(width: 12),
+            IconButton(
+              onPressed: () => {
+                // TODO Show available views
+              },
+              icon: Icon(
+                Icons.apps_outlined,
+                color: CryptoColors.text,
+              ),
+            ),
             Spacer(),
             Visibility(
               visible: false,

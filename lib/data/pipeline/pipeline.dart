@@ -5,13 +5,20 @@ import 'package:cryptowatcherx/data/fiat_conversion/fiat_converter.dart';
 import 'package:cryptowatcherx/data/investment/model/developed_investment.dart';
 import 'package:cryptowatcherx/data/investment/model/investment.dart';
 import 'package:cryptowatcherx/data/pipeline/developed_investments_publisher.dart';
+import 'package:cryptowatcherx/data/view/view_provider.dart';
 
 class Pipeline {
   final PriceProvider _priceProvider;
   final FiatConverter _fiatConverter;
   final FiatCurrency _targetCurrency;
+  final ViewProvider _viewProvider;
 
-  Pipeline(this._priceProvider, this._fiatConverter, this._targetCurrency);
+  Pipeline(
+    this._priceProvider,
+    this._fiatConverter,
+    this._viewProvider,
+    this._targetCurrency,
+  );
 
   Future<List<DevelopedInvestment>> pipeInvestments(
     List<Investment> investments,
@@ -37,6 +44,9 @@ class Pipeline {
           return await _pipe(investment, snapshot.money);
         },
       ),
+    ).then(
+      (developedInvestments) =>
+          _viewProvider.provideView().mapToView(developedInvestments),
     );
 
     DevelopedInvestmentsPublisher.enqueue(developedInvestments);
