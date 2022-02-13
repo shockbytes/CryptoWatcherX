@@ -97,13 +97,16 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(width: 12),
-            IconButton(
-              onPressed: () => {
-                // TODO Show available views
-              },
-              icon: Icon(
-                Icons.apps_outlined,
-                color: CryptoColors.text,
+            Visibility(
+              visible: false,
+              child: IconButton(
+                onPressed: () => {
+                  // Show available views
+                },
+                icon: Icon(
+                  Icons.apps_outlined,
+                  color: CryptoColors.text,
+                ),
               ),
             ),
             Spacer(),

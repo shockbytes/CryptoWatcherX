@@ -4,6 +4,7 @@ import 'package:cryptowatcherx/data/crypto/image/crypto_currency_image_path_serv
 import 'package:cryptowatcherx/util/crypto_colors.dart';
 import 'package:flutter/material.dart';
 
+@deprecated
 class CoinViewerCryptoCurrencyImagePathService
     implements CryptoCurrencyImagePathService {
   @override
